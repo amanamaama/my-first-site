@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My First Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="menu">
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+  </nav>
+
+  <h1 id="title">Hello, World!</h1>
+  <p>I am learning to be a full stack web developer.</p>
+  <p class="special">My name is Aman and I like football.</p>
+
+  <h2>My Hobbies</h2>
+  <ul class="hobbies">
+    <li>Football</li>
+    <li>Music</li>
+    <li>Reading</li>
+  </ul>
+
+  <h2>My Favorite Website</h2>
+  <a href="https://www.google.com">Go to Google</a>
+  <br>
+  <img src="photo.jpg" width="300">
+  <br>
+  <button id="myButton">Click Me</button>
+  <p id="count">Clicks: 0</p>
+  <button id="resetButton">Reset</button>
+  <p id="message"></p>
+
+  <h2>Say Hello</h2>
+  <input type="text" id="nameInput" placeholder="Type your name">
+  <button id="greetButton">Greet Me</button>
+  <p id="greeting"></p>
+
+  <h2>My To-Do List</h2>
+  <input type="text" id="taskInput" placeholder="Write a task">
+  <button id="addButton">Add</button>
+  <ul id="taskList"></ul>
+
+  <h2>Contact Me</h2>
+  <form>
+    <label>Your name:</label>
+    <br>
+    <input type="text" placeholder="Type your name here">
+    <br><br>
+    <label>Your email:</label>
+    <br>
+    <input type="email" placeholder="you@example.com">
+    <br><br>
+    <label>Your message:</label>
+    <br>
+    <textarea rows="4" cols="30"></textarea>
+    <br><br>
+    <button type="submit">Send</button>
+  </form>
+
+  <script>
+    let clicks = 0;
+
+    document.getElementById("myButton").onclick = function () {
+      clicks = clicks + 1;
+      document.getElementById("count").textContent = "Clicks: " + clicks;
+
+      if (clicks >= 10) {
+        document.getElementById("message").textContent = "Wow, 10 clicks! 🎉";
+      }
+    };
+
+    document.getElementById("resetButton").onclick = function () {
+      clicks = 0;
+      document.getElementById("message").textContent = "";
+      document.getElementById("count").textContent = "Clicks: " + clicks;
+    };
+
+    document.getElementById("greetButton").onclick = function () {
+      let name = document.getElementById("nameInput").value;
+      document.getElementById("greeting").textContent = "Hello, " + name + "! Welcome!";
+    };
+
+    document.getElementById("addButton").onclick = function () {
+      let task = document.getElementById("taskInput").value;
+
+      if (task === "") {
+        return;
+      }
+
+      let item = document.createElement("li");
+      item.textContent = task + " ";
+
+      let deleteButton = document.createElement("button");
+      deleteButton.textContent = "Delete";
+      deleteButton.onclick = function () {
+        item.remove();
+      };
+
+      item.appendChild(deleteButton);
+      document.getElementById("taskList").appendChild(item);
+      document.getElementById("taskInput").value = "";
+    };
+
+    document.getElementById("taskInput").onkeydown = function (event) {
+      if (event.key === "Enter") {
+        document.getElementById("addButton").click();
+      }
+    };
+  </script>
+</body>
+</html>
