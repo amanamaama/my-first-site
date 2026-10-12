@@ -112,8 +112,7 @@
         document.getElementById("addButton").click();
       }
     };
-            let skills = ["HTML", "CSS", "JavaScript", "Git"];
-
+            let skills = JSON.parse(localStorage.getItem("skills")) || ["HTML", "CSS", "JavaScript", "Git"];
     function showSkills() {
       document.getElementById("skillList").innerHTML = "";
 
@@ -133,8 +132,9 @@
         return;
       }
 
-      skills.push(newSkill);
-      showSkills();
+        skills.push(newSkill);
+  localStorage.setItem("skills", JSON.stringify(skills));
+  showSkills();
       document.getElementById("skillInput").value = "";
     };
   </script>
