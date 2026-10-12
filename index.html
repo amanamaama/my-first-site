@@ -44,7 +44,8 @@
   <ul id="taskList"></ul>
   <h2>My Skills</h2>
   <ul id="skillList"></ul>
-
+  <input type="text" id="skillInput" placeholder="New skill">
+<button id="addSkillButton">Add Skill</button>
   <h2>Contact Me</h2>
   <form>
     <label>Your name:</label>
@@ -111,13 +112,31 @@
         document.getElementById("addButton").click();
       }
     };
-        let skills = ["HTML", "CSS", "JavaScript", "Git"];
+            let skills = ["HTML", "CSS", "JavaScript", "Git"];
 
-    for (let i = 0; i < skills.length; i++) {
-      let li = document.createElement("li");
-      li.textContent = skills[i];
-      document.getElementById("skillList").appendChild(li);
+    function showSkills() {
+      document.getElementById("skillList").innerHTML = "";
+
+      for (let i = 0; i < skills.length; i++) {
+        let li = document.createElement("li");
+        li.textContent = skills[i];
+        document.getElementById("skillList").appendChild(li);
+      }
     }
+
+    showSkills();
+
+    document.getElementById("addSkillButton").onclick = function () {
+      let newSkill = document.getElementById("skillInput").value;
+
+      if (newSkill === "") {
+        return;
+      }
+
+      skills.push(newSkill);
+      showSkills();
+      document.getElementById("skillInput").value = "";
+    };
   </script>
 </body>
 </html>
