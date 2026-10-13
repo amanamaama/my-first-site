@@ -53,6 +53,10 @@
   <h2>Random Joke</h2>
 <p id="joke">Click the button to get a joke.</p>
 <button id="jokeButton">New Joke</button>
+<h2>Weather</h2>
+<input type="text" id="cityInput" placeholder="Type a city">
+<button id="weatherButton">Get Weather</button>
+<div id="weatherResult"></div>
   <h2>Contact Me</h2>
   <form>
     <label>Your name:</label>
@@ -164,6 +168,33 @@
         })
         .then(function (data) {
           document.getElementById("joke").textContent = data.setup + " " + data.punchline;
+        });
+    };
+        document.getElementById("weatherButton").onclick = function () {
+      let city = document.getElementById("cityInput").value;
+      let result = document.getElementById("weatherResult");
+
+      if (city === "") {
+        return;
+      }
+
+      result.textContent = "Loading...";
+
+      fetch("https://wttr.in/" + encodeURIComponent(city) + "?format=j1")
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (data) {
+          let now = data.current_condition[0];
+          result.innerHTML =
+            "<p>City: " + city + "</p>" +
+            "<p>Temperature: " + now.temp_C + " °C</p>" +
+            "<p>Feels like: " + now.FeelsLikeC + " °C</p>" +
+            "<p>Weather: " + now.weatherDesc[0].value + "</p>" +
+            "<p>Humidity: " + now.humidity + "%</p>";
+        })
+        .catch(function () {
+          result.textContent = "Could not get the weather. Check the city name.";
         });
     };
   </script>
