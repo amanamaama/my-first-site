@@ -50,6 +50,9 @@
   <button id="addSkillButton">Add Skill</button>
   <h2>My Profile Card</h2>
   <div id="profileCard"></div>
+  <h2>Random Joke</h2>
+<p id="joke">Click the button to get a joke.</p>
+<button id="jokeButton">New Joke</button>
   <h2>Contact Me</h2>
   <form>
     <label>Your name:</label>
@@ -154,6 +157,15 @@
       "<p>Age: " + person.age + "</p>" +
       "<p>Country: " + person.country + "</p>" +
       "<p>Learning: " + person.learning + "</p>";
+          document.getElementById("jokeButton").onclick = function () {
+      fetch("https://official-joke-api.appspot.com/random_joke")
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (data) {
+          document.getElementById("joke").textContent = data.setup + " " + data.punchline;
+        });
+    };
   </script>
 </body>
 
