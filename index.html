@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>My First Page</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <nav class="menu">
     <a href="#">Home</a>
@@ -45,7 +47,9 @@
   <h2>My Skills</h2>
   <ul id="skillList"></ul>
   <input type="text" id="skillInput" placeholder="New skill">
-<button id="addSkillButton">Add Skill</button>
+  <button id="addSkillButton">Add Skill</button>
+  <h2>My Profile Card</h2>
+  <div id="profileCard"></div>
   <h2>Contact Me</h2>
   <form>
     <label>Your name:</label>
@@ -112,7 +116,7 @@
         document.getElementById("addButton").click();
       }
     };
-            let skills = JSON.parse(localStorage.getItem("skills")) || ["HTML", "CSS", "JavaScript", "Git"];
+    let skills = JSON.parse(localStorage.getItem("skills")) || ["HTML", "CSS", "JavaScript", "Git"];
     function showSkills() {
       document.getElementById("skillList").innerHTML = "";
 
@@ -132,11 +136,25 @@
         return;
       }
 
-        skills.push(newSkill);
-  localStorage.setItem("skills", JSON.stringify(skills));
-  showSkills();
+      skills.push(newSkill);
+      localStorage.setItem("skills", JSON.stringify(skills));
+      showSkills();
       document.getElementById("skillInput").value = "";
     };
+        let person = {
+      name: "Aman",
+      age: 20,
+      country: "Ethiopia",
+      learning: "Full Stack Web Development"
+    };
+
+    let card = document.getElementById("profileCard");
+    card.innerHTML =
+      "<p>Name: " + person.name + "</p>" +
+      "<p>Age: " + person.age + "</p>" +
+      "<p>Country: " + person.country + "</p>" +
+      "<p>Learning: " + person.learning + "</p>";
   </script>
 </body>
+
 </html>
